@@ -591,25 +591,10 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
+    
 from Crypto.Cipher import AES
 import base64
 import requests
-
-# Encrypted values
-key = b"gokcY2sozh4EOnsMhBrcD1eKJkQZ6ajA6FEZZLOJuUKSBVbP9dbn26Ffaiss8orKrhC+uje3PnshDG5lch/H6XtIPj0fLQscS8hENqcCAfWYi5COZUmshuFhVXNrVMvUJHGplKmhkYYWIEdkE12scq1Zh4IXpAVW/RJzNA=="
-nonce = base64.b64decode("...")         # Paste nonce here
-ciphertext = base64.b64decode("...")    # Paste encrypted webhook here
-
-# Decrypt
-cipher = AES.new(key, AES.MODE_EAX, nonce=nonce)
-webhook_url = cipher.decrypt(ciphertext).decode()
 
 # Use the webhook
 requests.post(webhook_url, json={"content": "Webhook secured!"})
